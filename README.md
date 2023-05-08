@@ -1,3 +1,6 @@
+# Audio Analysis Scratch
+
+A collection of various scripts and experiments for audio feature extraction using Python, Librosa and other relevant libraries aimed at music genre classification and recommendations.
 
 ## To Explore
 
