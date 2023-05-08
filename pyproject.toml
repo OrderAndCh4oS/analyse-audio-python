@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "analyse-audio"
+version = "0.1.0"
+description = ""
+authors = ["order&chaos <sean@orderandchaoscreative.com>"]
+readme = "README.md"
+packages = [{include = "analyse_audio"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+librosa = "^0.10.0.post2"
+matplotlib = "^3.7.1"
+jupyter = "^1.0.0"
+numpy = "^1.24.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
