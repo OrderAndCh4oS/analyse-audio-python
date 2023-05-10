@@ -2,6 +2,12 @@
 
 A collection of various scripts and experiments for audio feature extraction using Python, Librosa and other relevant libraries aimed at music genre classification and recommendations.
 
+## Data Set
+
+Training on the GTZAN dataset
+
+https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification
+
 ## To Explore
 
 1. **Spectral contrast**: Spectral contrast is a measure of the difference in amplitude between peaks and valleys in an audio signal's frequency spectrum. It provides valuable information about the texture and timbre of sounds, as different instruments or voices produce unique spectral contrasts.
@@ -17,3 +23,6 @@ A collection of various scripts and experiments for audio feature extraction usi
 
 [Music Genre Classification with Python](https://towardsdatascience.com/music-genre-classification-with-python-c714d032f0d8#aa21)  
 A Guide to analyzing Audio/Music signals in Python
+
+[Music genre classification using Librosa and Tensorflow/Keras](https://blog.paperspace.com/music-genre-classification-using-librosa-and-pytorch/)
+How to implement a music genre classifier from scratch in TensorFlow/Keras using those features calculated by the Librosa library.
