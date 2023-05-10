@@ -24,5 +24,8 @@ https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classif
 [Music Genre Classification with Python](https://towardsdatascience.com/music-genre-classification-with-python-c714d032f0d8#aa21)  
 A Guide to analyzing Audio/Music signals in Python
 
-[Music genre classification using Librosa and Tensorflow/Keras](https://blog.paperspace.com/music-genre-classification-using-librosa-and-pytorch/)
+[Music genre classification using Librosa and Tensorflow/Keras](https://blog.paperspace.com/music-genre-classification-using-librosa-and-pytorch/)  
 How to implement a music genre classifier from scratch in TensorFlow/Keras using those features calculated by the Librosa library.
+
+[MaSC Compendium Visualization](https://github.com/chrispla/MaSC_sim_vis)  
+A collection of scripts for visualizing the Arab Mashriq collection of the NYU Abu Dhabi Library and the Eisenberg collection
