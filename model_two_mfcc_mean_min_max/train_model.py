@@ -18,16 +18,9 @@ def load_data():
 
 
 def build_model():
-    # inputs = Input(shape=(20, 1293), name="feature")
-    inputs = Input(shape=16809, name="feature")
-    x = Dense(5000, activation="relu", name="dense_0")(inputs)
-    x = Dense(2000, activation="relu", name="dense_1")(x)
-    x = Dense(1000, activation="relu", name="dense_2")(x)
-    x = Dense(500, activation="relu", name="dense_3")(x)
-    x = Dropout(0.1, name="dropout_1")(x)
-    x = Dense(250, activation="relu", name="dense_4")(x)
-    x = Dropout(0.1, name="dropout_2")(x)
-    x = Dense(125, activation="relu", name="dense_5")(x)
+    inputs = Input(shape=60, name="feature")
+    x = Dense(40, activation="relu", name="dense_1")(inputs)
+    x = Dense(20, activation="relu", name="dense_2")(x)
     outputs = Dense(10, activation="softmax", name="predictions")(x)
     model = Model(inputs=inputs, outputs=outputs)
     model.compile(
@@ -71,7 +64,7 @@ def train():
         y=data_set[0][0].tolist(),
         verbose=1,
         validation_data=(data_set[1][1].tolist(), data_set[1][0].tolist()),
-        epochs=15
+        epochs=45
     )
 
 

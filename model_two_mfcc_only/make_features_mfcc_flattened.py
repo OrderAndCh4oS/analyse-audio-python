@@ -2,19 +2,14 @@ import pickle
 
 import librosa.feature
 import numpy as np
-import pandas as pd
-from sklearn import preprocessing
 import tensorflow as tf
 
 
 def get_feature(y, sr):
-    mfccs = librosa.feature.mfcc(y=y, sr=sr)
-    df = pd.DataFrame(mfccs)
-    df = df.astype(float)
-    scaled_df = preprocessing.scale(df)
-    normalised_mfccs = preprocessing.normalize(scaled_df)
+    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
+    mfcc = mfcc.flatten()
 
-    return normalised_mfccs
+    return mfcc
 
 
 def make_features():
@@ -24,7 +19,7 @@ def make_features():
     ys = []
     for label, y, sr in data:
         feature = get_feature(y, sr)
-        if len(feature[0]) != 1293:
+        if len(feature) != 16809:
             continue
         xs.append(feature)
         ys.append(label)
@@ -34,7 +29,7 @@ def make_features():
     print(xs.shape)
     print(ys.shape)
 
-    with open('features.pkl', 'wb') as f:
+    with open('features-flattened.pkl', 'wb') as f:
         pickle.dump((xs, ys), f)
 
 

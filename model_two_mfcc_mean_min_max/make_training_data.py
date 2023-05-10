@@ -26,5 +26,4 @@ def make_training_data(features_pickle):
 
 
 if __name__ == "__main__":
-    # make_training_data('./features-normalised.pkl')
-    make_training_data('./features-flattened.pkl')
+    make_training_data('./features.pkl')
