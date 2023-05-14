@@ -1,13 +1,13 @@
 import pickle
 
-import pandas as pd
-from keras import Input, Model
-from keras.layers import Dense, Dropout, Flatten
-from keras.losses import SparseCategoricalCrossentropy, CategoricalCrossentropy
-from keras.metrics import SparseCategoricalAccuracy, CategoricalAccuracy
-from keras.optimizers import Adam
-from matplotlib import pyplot as plt
 import tensorflow as tf
+from keras import Input, Model
+from keras.layers import Dense
+from keras.losses import CategoricalCrossentropy
+from keras.metrics import CategoricalAccuracy
+from keras.optimizers import Adam
+
+from utilities.training_plots import plot_categorical_accuracy, plot_loss
 
 
 def load_data():
@@ -31,31 +31,6 @@ def build_model():
     model.summary()
 
     return model
-
-
-def plot_accuracy(history):
-    plt.plot(history.history['categorical_accuracy'])
-    plt.plot(history.history['val_categorical_accuracy'])
-    plt.title('model accuracy')
-    plt.ylabel('accuracy')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    plt.show()
-
-
-def plot_loss(history):
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    plt.show()
-
-
-def plot_history(history):
-    pd.DataFrame(history.history).plot(figsize=(8, 5))
-    plt.show()
 
 
 def train():
@@ -83,7 +58,7 @@ if __name__ == "__main__":
     # plot_model(model, show_shapes=True)
     history = train()
 
-    plot_accuracy(history)
+    plot_categorical_accuracy(history)
     plot_loss(history)
     # plot_history(history)
 

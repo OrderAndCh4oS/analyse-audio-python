@@ -1,12 +1,12 @@
 import pickle
 
-import pandas as pd
 from keras import Input, Model
 from keras.layers import Dense, Dropout
 from keras.losses import SparseCategoricalCrossentropy
 from keras.metrics import SparseCategoricalAccuracy
 from keras.optimizers import Adam
-from matplotlib import pyplot as plt
+
+from utilities.training_plots import plot_sparse_categorical_accuracy, plot_loss
 
 
 def load_data():
@@ -35,30 +35,6 @@ def build_model():
     return model
 
 
-def plot_accuracy(history):
-    plt.plot(history.history['val_sparse_categorical_accuracy'])
-    plt.title('model accuracy')
-    plt.ylabel('accuracy')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    plt.show()
-
-
-def plot_loss(history):
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    plt.show()
-
-
-def plot_history(history):
-    pd.DataFrame(history.history).plot(figsize=(8, 5))
-    plt.show()
-
-
 def train():
     return model.fit(
         x=data_set[0][1].tolist(),
@@ -80,10 +56,9 @@ if __name__ == "__main__":
     # plot_model(model, show_shapes=True)
     history = train()
 
-    plot_accuracy(history)
+    plot_sparse_categorical_accuracy(history)
     plot_loss(history)
     # plot_history(history)
 
     score = test_data()
     print('Accuracy : ' + str(score[1] * 100) + '%')
-

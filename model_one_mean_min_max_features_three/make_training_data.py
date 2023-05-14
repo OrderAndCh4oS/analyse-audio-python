@@ -1,8 +1,7 @@
 import pickle
-
-import librosa.feature
 import numpy as np
-
+import librosa.feature
+import tensorflow as tf
 
 def get_mfcc(y, sr):
     return np.array(librosa.feature.mfcc(y=y, sr=sr))
@@ -18,6 +17,19 @@ def get_chroma_vector(y, sr):
 
 def get_tonnetz(y, sr):
     return np.array(librosa.feature.tonnetz(y=y, sr=sr))
+
+
+def get_zero_crossings(y):
+    return librosa.zero_crossings(y, pad=False)
+
+
+def get_zero_crossing_rate(y):
+    return librosa.feature.zero_crossing_rate(y)
+
+
+def get_tempo(y, sr):
+    onset_env = librosa.onset.onset_strength(y=y, sr=sr)
+    return np.array(librosa.feature.tempo(onset_envelope=onset_env, sr=sr))
 
 
 def get_feature(y, sr):
@@ -45,7 +57,30 @@ def get_feature(y, sr):
     tonnetz_max = tonnetz.max(axis=1)
     tonnetz_feature = np.concatenate((tonnetz_mean, tonnetz_min, tonnetz_max))
 
-    return np.concatenate((chroma_feature, mel_spectrogram_feature, mfcc_feature, tonnetz_feature))
+    zero_crossing_rate = get_zero_crossing_rate(y)
+    zero_crossing_rate_mean = zero_crossing_rate.mean(axis=1)
+    zero_crossing_rate_min = zero_crossing_rate.min(axis=1)
+    zero_crossing_rate_max = zero_crossing_rate.max(axis=1)
+    zero_crossing_feature = np.concatenate((
+        zero_crossing_rate_mean,
+        zero_crossing_rate_min,
+        zero_crossing_rate_max
+    ))
+
+    """
+    Adding tempo seems to have a negative impact on results dropped from ~60% to low fifties
+    It also takes ages to process the tempo
+    """
+    tempo = min(get_tempo(y, sr) / 1000, 1)  # max tempo 1000 bpm or level out at 1
+
+    return np.concatenate((
+        chroma_feature,
+        mel_spectrogram_feature,
+        mfcc_feature,
+        tonnetz_feature,
+        zero_crossing_feature,
+        tempo
+    ))
 
 
 def make_training_data():
@@ -54,13 +89,15 @@ def make_training_data():
     xs = []
     ys = []
     for label, y, sr in data:
-        xs.append(get_feature(y, sr))
+        features = get_feature(y, sr)
+        xs.append(features)
         ys.append(label)
     xs = np.array(xs)
-    # ys = tf.one_hot(np.array(ys), 10)
-    ys = np.array(ys)
+    ys = tf.one_hot(np.array(ys), 10)
+    # ys = np.array(ys)
     print(xs.shape)
     print(ys.shape)
+
     permutations = np.random.permutation(999)
     features = np.array(xs)[permutations]
     labels = np.array(ys)[permutations]
