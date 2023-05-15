@@ -17,7 +17,7 @@ def load_data():
 
 
 def build_model():
-    inputs = Input(shape=501, name="feature")
+    inputs = Input(shape=504, name="feature")
     x = Dense(512, activation="relu", name="dense_1")(inputs)
     x = Dense(256, activation="relu", name="dense_2")(x)
     x = Dropout(0.1, name="dropout_1")(x)
@@ -35,13 +35,16 @@ def build_model():
     return model
 
 
+"""
+~60% accuracy with dynamic tempo mean, min, max. Adding tempo seems to be detrimental to the accuracy…
+"""
 def train():
     return model.fit(
         x=data_set[0][1].tolist(),
         y=data_set[0][0].tolist(),
         verbose=1,
         validation_data=(data_set[1][1].tolist(), data_set[1][0].tolist()),
-        epochs=100
+        epochs=1000
     )
 
 
