@@ -29,3 +29,6 @@ How to implement a music genre classifier from scratch in TensorFlow/Keras using
 
 [MaSC Compendium Visualization](https://github.com/chrispla/MaSC_sim_vis)  
 A collection of scripts for visualizing the Arab Mashriq collection of the NYU Abu Dhabi Library and the Eisenberg collection
+
+[music2vec: Generating Vector Embeddings for Genre-Classification Task](https://medium.com/@rajatheb/music2vec-generating-vector-embedding-for-genre-classification-task-411187a20820)
+The aim of our project was to obtain similar vector representation for music segments. We hope to capture the structural and stylistic information of the music in this low dimensional space. using genre classification as the end task.
