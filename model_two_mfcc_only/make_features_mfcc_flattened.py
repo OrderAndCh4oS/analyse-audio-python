@@ -17,7 +17,7 @@ def make_features():
         data = pickle.load(f)
     xs = []
     ys = []
-    for label, y, sr in data:
+    for label, y, sr, filename in data:
         feature = get_feature(y, sr)
         if len(feature) != 16809:
             continue
