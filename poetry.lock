@@ -3137,6 +3137,17 @@ files = [
 ]
 
 [[package]]
+name = "sns"
+version = "0.1"
+description = "SNS utils"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "sns-0.1.tar.gz", hash = "sha256:2d847d23eb8e0ea20054dbadabdecfafc529e4c7a16a6ce70205c4bf8ebc6cf4"},
+]
+
+[[package]]
 name = "soundfile"
 version = "0.12.1"
 description = "An audio library based on libsndfile, CFFI and NumPy"
@@ -3774,4 +3785,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.12"
-content-hash = "0b0d2a71e6e580f1f0adcf06fa453d452de8033969da114f465b0fd750a50ae7"
+content-hash = "0eaf10c06b49aaa1b831c0dd71ccfdd8667e1deb985ee26ec0b630050f10f4c3"
