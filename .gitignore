@@ -3,3 +3,4 @@ data
 processed_audio
 pickles
 *.pkl
+**/logs
